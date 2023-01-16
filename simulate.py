@@ -17,4 +17,6 @@ for x in range(1000):
     p.stepSimulation()
     frontLegSensorValues[x] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
     time.sleep(1/60)
+with open('sensorvalues.npy', 'wb') as f:
+    numpy.save(f, frontLegSensorValues, allow_pickle=True, fix_imports=True)
 p.disconnect()

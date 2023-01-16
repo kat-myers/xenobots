@@ -13,10 +13,6 @@ def Create_World():
 
 Create_World()
 
-
-#pyrosim.Send_Cube(name = "Torso", pos = [0,0,.5], size = [length,width,height])
-#pyrosim.Send_Joint( name = "Torso_Leg" , parent= "Torso" , child = "Leg" , type = "revolute", position = [0.5,0,1])
-#pyrosim.Send_Cube(name = "Leg", pos = [.5,0,.5], size = [length,width,height])
 def Create_Robot():
     length = 1
     width = 1
