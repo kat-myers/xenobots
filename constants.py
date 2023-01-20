@@ -6,12 +6,14 @@ import pyrosim.pyrosim as pyrosim
 import random
 
 bl_amplitude = numpy.pi/4
-bl_frequency = 20
+bl_frequency = 100
 bl_phaseOffset = 0
 
 fl_amplitude = numpy.pi/4
-fl_frequency = 20
+fl_frequency = 100
 fl_phaseOffset = -10
 
 iterations = 1000
-sleep = 1/60
+sleep_time = 1/60
+
+force = 500

@@ -1,6 +1,6 @@
 import pybullet as p
 import pybullet_data
-import pyrosim as pyrosim
+import pyrosim.pyrosim as pyrosim
 
 class WORLD: #names class
     def __init__(self): # defines constructor for class

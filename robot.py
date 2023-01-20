@@ -1,5 +1,5 @@
 import numpy as np
-import pyrosim as pyrosim
+import pyrosim.pyrosim as pyrosim
 import constants as c
 import pybullet as p
 import pybullet_data
@@ -15,14 +15,15 @@ class ROBOT: #names class
         self.robotId = p.loadURDF("body.urdf")
         pyrosim.Prepare_To_Simulate(self.robotId)
         self.Prepare_To_Sense()
+        self.Prepare_To_Act()
 
-    def Prepare_to_Sense(self):
+    def Prepare_To_Sense(self):
         self.sensor = {}
-        for linkName in pyrosim.linkNamestoIndices:
-            self.sensors[linkName] = SENSOR(linkName)
+        for linkName in pyrosim.linkNamesToIndices:
+            self.sensor[linkName] = SENSOR(linkName)
     
-    def SEnse(self, t):
-        for i,curr_sensor in enumerate(self.sensors):
+    def Sense(self, t):
+        for i,curr_sensor in enumerate(self.sensor):
             # call teh ith sensor instances' get_value() method
             SENSOR.Get_Value(self.sensor[curr_sensor],t)
 
@@ -36,10 +37,10 @@ class ROBOT: #names class
         self.frequency = 5
         self.offset = 0
 
-        angle_range = np.linspace(0, 2*np.pi, c.num_iters)
+        angle_range = np.linspace(0, 2*np.pi, c.iterations)
         self.targetAngles = self.amplitude * np.sin(self.frequency * angle_range + self.offset)
-        self.targetAngles2 = self.amplitude * np.sin(self.freqeuncy/2 * angle_range + self.offset)
+        self.targetAngles2 = self.amplitude * np.sin(self.frequency/2 * angle_range + self.offset)
 
-def Act(self,t):
-    for i, curr_otor in enumerate(self.motors):
-        MOTOR.Set_Value(self.motors[curr_motor], self, t)
+    def Act(self,t):
+        for i, curr_motor in enumerate(self.motors):
+            MOTOR.Set_Value(self.motors[curr_motor], self, t)

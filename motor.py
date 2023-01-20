@@ -1,13 +1,13 @@
 import pybullet as p
 import pybullet_data
-import pyrosim as pyrosim
+import pyrosim.pyrosim as pyrosim
 import constants as c
 import numpy as np
 
 class MOTOR:
     def __init__(self, jointName):
         self.jointName = jointName
-        self.motorValues = np.zeros(c.numer_iters)
+        self.motorValues = np.zeros(c.iterations)
 
     def Set_Value(self, robot, t):
         # print ('joint', self.jointName)
@@ -18,7 +18,7 @@ class MOTOR:
 
         else:
             self.motorValues[t] = pyrosim.Set_Motor_For_Joint(bodyIndex = robot.robotId, jointName = self.jointName,
-            controlMode = p.POSITION_CONTROL, targetPosition = robot.tragetAngles[t], maxForce = c.force)
+            controlMode = p.POSITION_CONTROL, targetPosition = robot.targetAngles[t], maxForce = c.force)
     
     def Save_Values(self):
         np.save('data/motorValues.npy', self.motorValues)
