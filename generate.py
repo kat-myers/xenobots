@@ -1,4 +1,13 @@
 import pyrosim.pyrosim as pyrosim
+import numpy
+import time
+import pybullet_data
+import pyrosim.pyrosim as pyrosim
+import random
+import constants as c
+import pybullet as p
+import time
+from world import WORLD
 
 def Create_World():
     length = 1
@@ -13,7 +22,7 @@ def Create_World():
 
 Create_World()
 
-def Create_Robot():
+def Generate_Body():
     length = 1
     width = 1
     height = 1
@@ -28,6 +37,18 @@ def Create_Robot():
     pyrosim.Send_Cube(name = "FrontLeg", pos = [.5,0,-.5], size = [length,width,height])
     pyrosim.End()
 
-Create_Robot()
+Generate_Body()
 
+def Generate_Brain():
+    pyrosim.Start_NeuralNetwork("brain.nndf")
+    pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
+    pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "BackLeg")
+    pyrosim.Send_Sensor_Neuron(name = 2 , linkName = "FrontLeg")
+    pyrosim.End()
+
+Generate_Brain()
+
+
+
+#%%
 #%%

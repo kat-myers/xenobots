@@ -6,6 +6,7 @@ import pybullet_data
 from sensor import SENSOR
 from motor import MOTOR
 import constants as c
+from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 
 class ROBOT: #names class
@@ -44,3 +45,7 @@ class ROBOT: #names class
     def Act(self,t):
         for i, curr_motor in enumerate(self.motors):
             MOTOR.Set_Value(self.motors[curr_motor], self, t)
+    
+    def Think(self,t):
+        self.nn = NEURAL_NETWORK("brain.nndf")
+        self.nn.Update()
